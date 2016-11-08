@@ -1,21 +1,5 @@
 //THIS CODE IS UNFINISHED AND DOES NOT PERFORM AS ENTIRELY INTENDED
 
-/* Cameron Schmidt, 007, camhelam@gmail.com
-To give the random path of a single plinko chip and out put winnings. To out put total and average winnings of multiple chips dropped.
-Inputs: 
-   Menu option selections.
-   Total chips
-   location to drop chips
-Output:
-   Path of single chip selection
-   Total winnings
-   Average winnings per chip
-   
-   Late Submission request
-*/ 
-
-
-
 #include <iostream>
 #include <ios>
 #include <iomanip>
