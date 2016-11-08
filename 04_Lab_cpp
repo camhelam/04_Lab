@@ -1,0 +1,183 @@
+//THIS CODE IS UNFINISHED AND DOES NOT PERFORM AS ENTIRELY INTENDED
+
+/* Cameron Schmidt, 007, camhelam@gmail.com
+To give the random path of a single plinko chip and out put winnings. To out put total and average winnings of multiple chips dropped.
+Inputs: 
+   Menu option selections.
+   Total chips
+   location to drop chips
+Output:
+   Path of single chip selection
+   Total winnings
+   Average winnings per chip
+   
+   Late Submission request
+*/ 
+
+
+
+#include <iostream>
+#include <ios>
+#include <iomanip>
+#include <string>
+#include <cmath>
+#include <ctime>
+#include <cstdlib>
+using namespace std;
+
+int main() 
+{
+   string mainMenu = "MENU: Please select one of the following options:\n\n0 - Quit the program\n1 - Drop a single chip into one slot\n2 - Drop multiple chips into one slot";
+   string enterSelection = "Enter your selection now: ";
+   string invalidSelection = "INVALID SELECTION.  Please enter 0, 1 or 2";
+   string whichSlot = "Which slot do you want to drop the chip in (0-8)?";
+   int userMainSelection = 0;
+   int userSlotSelection = 0;
+   int numUserChips = 0;
+   double chipLocation = 0.0;
+   const int PEG_ROWS = 12;
+   const double PRIZE_0 = 100.00;
+   const double PRIZE_1 = 500.00;
+   const double PRIZE_2 = 1000.00;
+   const double PRIZE_3 = 0.00;
+   const double PRIZE_4 = 10000.00;
+   const double PRIZE_5 = 0.00;
+   const double PRIZE_6 = 1000.00;
+   const double PRIZE_7 = 500.00;
+   const double PRIZE_8 = 100.00;
+   srand(42); 
+   double randomDrop = 0.0;
+   double rewardOut = 0.0;
+   bool playPlinko = true;
+      
+   
+  
+   cout << "Welcome to the plinko simulator!" << endl;
+   while (playPlinko != false){
+   cout << "\n" << mainMenu << endl;
+   cout << endl;
+   cout << enterSelection;
+   cin  >> userMainSelection;
+   cout << endl;
+         
+      
+   while ((userMainSelection > 2) || (userMainSelection < 0)){
+      cout << invalidSelection << endl;
+      cout << endl;
+      cout << mainMenu << endl;
+      cout << endl;
+      cout << enterSelection << endl;
+      cin  >> userMainSelection;
+   }
+   
+   if (userMainSelection == 1){
+      cout << "*** DROP SINGLE CHIP ***" << endl;
+      cout << endl;
+      cout << "Which slot do you want to drop the chip in (0-8)? " << endl;
+      cin  >> userSlotSelection;
+         while ((userSlotSelection > 8) || (userSlotSelection < 0)){
+            cout << "INVALID SLOT." << endl;
+            cout << "\n" << mainMenu << endl;
+   cout << endl;
+   cout << enterSelection;
+   cin  >> userMainSelection;
+   cout << endl;
+         
+      
+   while ((userMainSelection > 2) || (userMainSelection < 0)){
+      cout << invalidSelection << endl;
+      cout << endl;
+      cout << mainMenu << endl;
+      cout << endl;
+      cout << enterSelection << endl;
+      cin  >> userMainSelection;
+   }
+   
+   if (userMainSelection == 1){
+      cout << "*** DROP SINGLE CHIP ***" << endl;
+      cout << endl;
+      cout << "Which slot do you want to drop the chip in (0-8)? " << endl;
+      cin  >> userSlotSelection;
+   }
+         }
+         if ((userSlotSelection >= 0) || (userSlotSelection <= 8)){
+            chipLocation = userSlotSelection;
+            cout << "*** DROPPING CHIP INTO SLOT " << fixed << setprecision(0) << chipLocation << " ***" << endl;
+            cout << "PATH: [" << fixed << setprecision(1) << chipLocation;
+            for (int i = 0; i < PEG_ROWS; ++i){
+               randomDrop = rand() % 2;
+               if (randomDrop == 1){
+                  chipLocation = chipLocation + 0.5;
+               }
+               else {
+                  chipLocation = chipLocation - 0.5;
+               }
+               if (chipLocation < 0) {
+                  chipLocation = 0.5;
+               }
+               else if (chipLocation > 8) {
+                  chipLocation = 7.5;
+               }
+               cout << " " << fixed << setprecision(1) << chipLocation;
+               
+               if (chipLocation == 0) {
+                  rewardOut = PRIZE_0;
+               }
+               else if (chipLocation == 1) {
+                  rewardOut = PRIZE_1;
+               }
+               else if (chipLocation == 2) {
+                  rewardOut = PRIZE_2;
+               }
+               else if (chipLocation == 3) {
+                  rewardOut = PRIZE_3;
+               }
+               else if (chipLocation == 4) {
+                  rewardOut = PRIZE_4;
+               }
+               else if (chipLocation == 5) {
+                  rewardOut = PRIZE_5;
+               }
+               else if (chipLocation == 6) {
+                  rewardOut = PRIZE_6;
+               }
+               else if (chipLocation == 7) {
+                  rewardOut = PRIZE_7;
+               }
+               else if (chipLocation == 8) {
+                  rewardOut = PRIZE_8;
+               }
+         }
+         cout << "]" << endl;
+         cout << fixed << setprecision(2) << "WINNINGS: $" << rewardOut;
+         cout << endl;
+         }
+            
+   }
+   
+   if (userMainSelection == 2) {
+      cout << "*** DROP MULTIPLE CHIPS ***" << endl;
+      cout << endl;
+      cout << "How many chips do you want to drop (>0)?";
+      cin  >> numUserChips;
+         while (numUserChips <= 0){
+            cout << "INVALID NUMBER OF CHIPS." << endl;
+            cout << "\n" << mainMenu << endl;
+            cout << endl;
+            cout << enterSelection;
+            cin  >> userMainSelection;
+            cout << endl;
+         }
+   }
+   
+   if (userMainSelection == 0) {
+      cout << "GOODBYE!";
+      playPlinko = false;
+   }
+   
+  
+
+}
+	return 0;
+}
+	
